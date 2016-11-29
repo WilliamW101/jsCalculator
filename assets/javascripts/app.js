@@ -1,32 +1,36 @@
-var calcButtons = document.getElementsByClassName('calc-btn');
-console.log(calcButtons);
-var num1 = parseFloat(this.innerText);
-var operator = '';
-var num2 = parseFloat(this.innerText)
-var result;
+var nums = '';
 
-for(var i = 0; i < calcButtons.length; i ++) {
+var calcButtons = document.getElementsByClassName('calc-btn');
+for(var i = 0; i < calcButtons.length; i += 1) {
   var calcButton = calcButtons[i];
   calcButton.addEventListener('click', function(){
-    console.log(parseFloat(this.innerText));
+    nums += this.innerText;
+    putNumber(nums);
   });
 }
 
-switch(operator) {
-  case '+':
-      result = num1 + num2;
-      break;
-  case '-':
-      result = num1 - num2;
-      break;
-  case '*':
-      result = num1 * num2;
-      break;
-  case '/':
-      result = num1 / num2;
-      break;
-  default:
-    result = 'Not a valid operator';
+var display = document.getElementById('display');
+function putNumber(num) {
+  display.innerHTML = parseFloat(num);
+  console.log(num);
+    console.log(num.innerText);
+      num.innerText = calcButtons;
+  // console.log(parseFloat(num));
+  //   num.innerText = calcButtons;
 }
 
-// console.log(result);
+var equalButton = document.getElementById('equal-btn');
+equalButton.addEventListener('click', function(){
+  nums = eval(nums);
+  putNumber(nums);
+  if(display.innerHTML === 'Infinity' || display.innerHTML === 'NaN') {
+    putNumber('error');
+    nums = '';
+  }
+});
+
+var clearButton = document.getElementById('clear-btn');
+clearButton.addEventListener('click', function(){
+  nums = '';
+  putNumber(0);
+});

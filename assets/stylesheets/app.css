@@ -12,7 +12,7 @@ body {
   width: 100%;
 }
 
-#result {
+#display {
   background-color: #eeeeee;
   color: black;
   font-size: 25px;
